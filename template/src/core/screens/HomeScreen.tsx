@@ -1,13 +1,7 @@
 import styled from '@emotion/native';
 import React from 'react';
-import { StatusBar } from 'react-native';
 import Config from 'react-native-config';
-import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
-
-const SafeAreaView = styled(RNSafeAreaView)({
-  flex: 1,
-  backgroundColor: 'white',
-});
+import { Screen } from '../../navigation/components/Screen';
 
 const Header = styled.View({
   flexDirection: 'row',
@@ -23,11 +17,10 @@ const Title = styled.Text({
 
 export function HomeScreen() {
   return (
-    <SafeAreaView edges={['top', 'bottom', 'left', 'right']}>
-      <StatusBar barStyle="light-content" />
+    <Screen>
       <Header>
         <Title>{Config.TITLE}</Title>
       </Header>
-    </SafeAreaView>
+    </Screen>
   );
 }
