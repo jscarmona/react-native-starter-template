@@ -5,6 +5,7 @@ import styled from '@emotion/native';
 import { ThemeProvider } from '@emotion/react';
 import { RootStackNavigator } from '../../navigation/navigators/RootStackNavigator';
 import { NavigationProvider } from '../../navigation/providers/NavigationProvider';
+import { RootErrorBoundary } from '../../instrumentation/components/RootErrorBoundary';
 
 const GestureHandlerRootView = styled(RNGestureHandlerRootView)({
   flex: 1,
@@ -15,9 +16,11 @@ export function AppProvider(): JSX.Element {
     <GestureHandlerRootView>
       <SafeAreaProvider>
         <ThemeProvider theme={{}}>
-          <NavigationProvider>
-            <RootStackNavigator />
-          </NavigationProvider>
+          <RootErrorBoundary>
+            <NavigationProvider>
+              <RootStackNavigator />
+            </NavigationProvider>
+          </RootErrorBoundary>
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
