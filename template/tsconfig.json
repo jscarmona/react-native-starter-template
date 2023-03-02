@@ -1,0 +1,8 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "types": ["react-native", "node"]
+  },
+  "include": ["src", "types", ".eslintrc.js", "babel.config.js", "metro.config.js", "index.js"],
+  "exclude": ["node_modules"]
+}
