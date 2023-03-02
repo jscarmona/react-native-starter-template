@@ -19,7 +19,8 @@
     "@commitlint/config-conventional": "17.4.3",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
-    "husky": "8.0.3"
+    "husky": "8.0.3",
+    "shelljs": "0.8.5"
   },
   "commitlint": {
     "extends": [
