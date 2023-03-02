@@ -23,26 +23,26 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@commitlint/cli@17.4.3":
-  version "17.4.3"
-  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-17.4.3.tgz#49583a7946b4030e7e6d9caafac44307835fb05e"
-  integrity sha512-IPTS7AZuBHgD0gl24El8HwuDM9zJN9JLa5KmZUQoFD1BQeGGdzAYJOnAr85CeJWpTDok0BGHDL0+4odnH0iTyA==
+"@commitlint/cli@17.4.4":
+  version "17.4.4"
+  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-17.4.4.tgz#36df08bfa31dbb9a2b6b1d7187a31e578f001a06"
+  integrity sha512-HwKlD7CPVMVGTAeFZylVNy14Vm5POVY0WxPkZr7EXLC/os0LH/obs6z4HRvJtH/nHCMYBvUBQhGwnufKfTjd5g==
   dependencies:
-    "@commitlint/format" "^17.4.0"
-    "@commitlint/lint" "^17.4.3"
-    "@commitlint/load" "^17.4.2"
-    "@commitlint/read" "^17.4.2"
-    "@commitlint/types" "^17.4.0"
+    "@commitlint/format" "^17.4.4"
+    "@commitlint/lint" "^17.4.4"
+    "@commitlint/load" "^17.4.4"
+    "@commitlint/read" "^17.4.4"
+    "@commitlint/types" "^17.4.4"
     execa "^5.0.0"
     lodash.isfunction "^3.0.9"
     resolve-from "5.0.0"
     resolve-global "1.0.0"
     yargs "^17.0.0"
 
-"@commitlint/config-conventional@17.4.3":
-  version "17.4.3"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-17.4.3.tgz#c732d29181c3a4d5f65b01a7bb5989edd5c470cf"
-  integrity sha512-8EsY2iDw74hCk3hIQSg7/E0R8/KtPjnFPZVwmmHxcjhZjkSykmxysefICPDnbI3xgxfov0zwL1WKDHM8zglJdw==
+"@commitlint/config-conventional@17.4.4":
+  version "17.4.4"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-17.4.4.tgz#f30b1e5b2e48ce5799a483c200c52f218a98efcc"
+  integrity sha512-u6ztvxqzi6NuhrcEDR7a+z0yrh11elY66nRrQIpqsqW6sZmpxYkDLtpRH8jRML+mmxYQ8s4qqF06Q/IQx5aJeQ==
   dependencies:
     conventional-changelog-conventionalcommits "^5.0.0"
 
@@ -71,7 +71,7 @@
   resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-17.4.0.tgz#4518e77958893d0a5835babe65bf87e2638f6939"
   integrity sha512-LIgYXuCSO5Gvtc0t9bebAMSwd68ewzmqLypqI2Kke1rqOqqDbMpYcYfoPfFlv9eyLIh4jocHWwCK5FS7z9icUA==
 
-"@commitlint/format@^17.4.0":
+"@commitlint/format@^17.4.4":
   version "17.4.4"
   resolved "https://registry.yarnpkg.com/@commitlint/format/-/format-17.4.4.tgz#0f6e1b4d7a301c7b1dfd4b6334edd97fc050b9f5"
   integrity sha512-+IS7vpC4Gd/x+uyQPTAt3hXs5NxnkqAZ3aqrHd5Bx/R9skyCAWusNlNbw3InDbAK6j166D9asQM8fnmYIa+CXQ==
@@ -87,7 +87,7 @@
     "@commitlint/types" "^17.4.4"
     semver "7.3.8"
 
-"@commitlint/lint@^17.4.3":
+"@commitlint/lint@^17.4.4":
   version "17.4.4"
   resolved "https://registry.yarnpkg.com/@commitlint/lint/-/lint-17.4.4.tgz#0ecd70b44ec5f4823c2e00e0c4b04ebd41d42856"
   integrity sha512-qgkCRRFjyhbMDWsti/5jRYVJkgYZj4r+ZmweZObnbYqPUl5UKLWMf9a/ZZisOI4JfiPmRktYRZ2JmqlSvg+ccw==
@@ -97,7 +97,7 @@
     "@commitlint/rules" "^17.4.4"
     "@commitlint/types" "^17.4.4"
 
-"@commitlint/load@>6.1.1", "@commitlint/load@^17.4.2":
+"@commitlint/load@>6.1.1", "@commitlint/load@^17.4.4":
   version "17.4.4"
   resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.4.4.tgz#13fcb553572f265339801cde6dd10ee5eea07f5e"
   integrity sha512-z6uFIQ7wfKX5FGBe1AkOF4l/ShOQsaa1ml/nLMkbW7R/xF8galGS7Zh0yHvzVp/srtfS0brC+0bUfQfmpMPFVQ==
@@ -131,7 +131,7 @@
     conventional-changelog-angular "^5.0.11"
     conventional-commits-parser "^3.2.2"
 
-"@commitlint/read@^17.4.2":
+"@commitlint/read@^17.4.4":
   version "17.4.4"
   resolved "https://registry.yarnpkg.com/@commitlint/read/-/read-17.4.4.tgz#de6ec00aad827764153009aa54517e3df2154555"
   integrity sha512-B2TvUMJKK+Svzs6eji23WXsRJ8PAD+orI44lVuVNsm5zmI7O8RSGJMvdEZEikiA4Vohfb+HevaPoWZ7PiFZ3zA==
@@ -177,7 +177,7 @@
   dependencies:
     find-up "^5.0.0"
 
-"@commitlint/types@^17.4.0", "@commitlint/types@^17.4.4":
+"@commitlint/types@^17.4.4":
   version "17.4.4"
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-17.4.4.tgz#1416df936e9aad0d6a7bbc979ecc31e55dade662"
   integrity sha512-amRN8tRLYOsxRr6mTnGGGvB5EmW/4DDjLMgiwK3CCVEmN6Sr/6xePGEpWaspKkckILuUORCwe6VfDBw6uj4axQ==
