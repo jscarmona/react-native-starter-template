@@ -81,10 +81,14 @@ export function createPalette(mode: ColorMode): Theme['palette'] {
       disabled: '#CACACA',
     },
     text: {
-      primary: '#00A87E',
+      primary: '#B0B0B0',
       secondary: '#121212',
       hint: '#7B7B7B',
       disabled: '#B0B0B0',
+    },
+    border: {
+      default: '#CACACA',
+      focus: '#B0B0B0',
     },
   };
 }

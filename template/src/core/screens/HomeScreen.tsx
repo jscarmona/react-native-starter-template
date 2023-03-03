@@ -1,26 +1,20 @@
-import styled from '@emotion/native';
 import React from 'react';
 import Config from 'react-native-config';
 import { Screen } from '../../navigation/components/Screen';
+import { ScreenHeader } from '../../navigation/components/ScreenHeader';
+import { RootBottomTabScreenProps } from '../../navigation/types/RootBottomTabScreenProps';
 
-const Header = styled.View({
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  margin: 8,
-});
+export const HomeScreenName = 'Home';
 
-const Title = styled.Text({
-  fontSize: 28,
-  fontWeight: '700',
-});
+export type HomeScreenParams = undefined;
+export type HomeScreenProps = RootBottomTabScreenProps<typeof HomeScreenName>;
+export type HomeScreenRouteProp = HomeScreenProps['route'];
+export type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 
 export function HomeScreen() {
   return (
-    <Screen>
-      <Header>
-        <Title>{Config.TITLE}</Title>
-      </Header>
+    <Screen name={HomeScreenName} gutter>
+      <ScreenHeader title={Config.TITLE} />
     </Screen>
   );
 }

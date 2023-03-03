@@ -4,7 +4,6 @@ import { TextStyle } from 'react-native';
 export type ColorMode = 'light' | 'dark';
 
 export interface TypographyStyle {
-  fontFamily: TextStyle['fontFamily'];
   fontSize: TextStyle['fontSize'];
   fontWeight: TextStyle['fontWeight'];
   lineHeight: TextStyle['lineHeight'];
@@ -45,6 +44,11 @@ export interface BackgroundPalette {
   disabled: string;
 }
 
+export interface BorderPalette {
+  default: string;
+  focus: string;
+}
+
 export interface TextPalette {
   primary: string;
   secondary: string;
@@ -61,6 +65,7 @@ export interface Palette {
   error: PaletteScale;
   background: BackgroundPalette;
   text: TextPalette;
+  border: BorderPalette;
   toggleColor: (lightColor: string, darkColor: string) => string;
 }
 

@@ -1,18 +1,25 @@
-import styled from '@emotion/native';
-import React, { PropsWithChildren } from 'react';
-import { StatusBar } from 'react-native';
-import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
+import React, { forwardRef, Ref } from 'react';
+import { View, ViewProps, StatusBar } from 'react-native';
+import { SafeAreaView } from '../../ui/components/SafeAreaView';
+import { useScreenStatusBarProps, StatusBarProps as UIStatusBarProps } from '../hooks/useScreenStatusBarProps';
+import { ScreenContextProps, ScreenProvider } from '../providers/ScreenProvider';
 
-const SafeAreaView = styled(RNSafeAreaView)(({ theme }) => ({
-  flex: 1,
-  backgroundColor: theme.palette.background.default,
-}));
-
-export function Screen({ children }: PropsWithChildren) {
-  return (
-    <SafeAreaView edges={['top', 'bottom', 'left', 'right']}>
-      <StatusBar barStyle="dark-content" />
-      {children}
-    </SafeAreaView>
-  );
+export interface ScreenProps extends ScreenContextProps, ViewProps {
+  StatusBarProps?: UIStatusBarProps;
 }
+
+export const Screen = forwardRef(function Screen(
+  { children, edges = ['top'], gutter, sticky, scrollable, StatusBarProps, name, ...props }: ScreenProps,
+  ref: Ref<View>,
+): JSX.Element {
+  const statusBarProps = useScreenStatusBarProps(StatusBarProps);
+
+  return (
+    <ScreenProvider name={name} gutter={gutter} sticky={sticky} scrollable={scrollable}>
+      <StatusBar {...statusBarProps} />
+      <SafeAreaView ref={ref} edges={edges} {...props}>
+        {children}
+      </SafeAreaView>
+    </ScreenProvider>
+  );
+});
