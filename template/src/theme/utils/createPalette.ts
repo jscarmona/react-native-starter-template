@@ -76,7 +76,7 @@ export function createPalette(mode: ColorMode): Theme['palette'] {
       50: '#FABFBF',
     },
     background: {
-      default: '#FFFFFFF',
+      default: '#FFFFFF',
       overlay: 'rgba(0, 0, 0, 0.8)',
       disabled: '#CACACA',
     },
