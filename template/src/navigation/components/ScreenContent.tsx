@@ -15,7 +15,7 @@ const useStyles = makeStyles<{ gutter?: boolean }>((theme, { gutter }) => ({
 }));
 
 export const ScreenContent = forwardRef(function ScreenContent(
-  { children, gutter, style, ...props }: ScreenContentProps,
+  { children, gutter = true, style, ...props }: ScreenContentProps,
   ref: Ref<View>,
 ): JSX.Element {
   const styles = useStyles({ gutter });

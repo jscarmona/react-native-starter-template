@@ -26,9 +26,10 @@ const TextInput = styled.TextInput(({ theme, multiline, numberOfLines }) => ({
   borderRadius: 8,
   backgroundColor: 'transparent',
   fontSize: 16,
-  lineHeight: 24,
+  lineHeight: multiline ? 24 : undefined,
   height: multiline ? (numberOfLines || 1) * 24 : 40,
-  textAlignVertical: 'top',
+  minHeight: 40,
+  textAlignVertical: 'center',
   color: theme.palette.text.primary,
 }));
 

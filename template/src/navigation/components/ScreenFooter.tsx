@@ -14,7 +14,7 @@ const useStyles = makeStyles<{ gutter?: boolean }>((theme, { gutter }) => ({
 }));
 
 export const ScreenFooter = forwardRef(function ScreenFooter(
-  { gutter, children, ...props }: ScreenFooterProps,
+  { gutter = true, children, ...props }: ScreenFooterProps,
   ref: Ref<View>,
 ): JSX.Element {
   const styles = useStyles({ gutter });
