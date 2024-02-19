@@ -1,14 +1,13 @@
-import React, { PropsWithChildren, useMemo } from 'react';
+import React, { PropsWithChildren, useCallback, useMemo, useRef } from 'react';
 import { NavigationContainer, Theme, useNavigationContainerRef } from '@react-navigation/native';
 import { useTheme } from '@emotion/react';
 import { RootStackParamList } from '../types/RootStackParamList';
 import { linking } from '../utils/linking';
 
-export function NavigationProvider({ children }: PropsWithChildren<unknown>) {
-  const navigationRef = useNavigationContainerRef<RootStackParamList>();
+const useNavigationTheme = (): Theme => {
   const theme = useTheme();
 
-  const navigationTheme: Theme = useMemo(
+  return useMemo(
     () => ({
       dark: theme.mode === 'dark',
       colors: {
@@ -22,9 +21,39 @@ export function NavigationProvider({ children }: PropsWithChildren<unknown>) {
     }),
     [theme],
   );
+};
+
+export function NavigationProvider({ children }: PropsWithChildren<unknown>) {
+  const navigationRef = useNavigationContainerRef<RootStackParamList>();
+  const navigationTheme = useNavigationTheme();
+
+  const routeNameRef = useRef<string>();
+
+  const handleOnReady = useCallback(() => {
+    routeNameRef.current = navigationRef.getCurrentRoute()?.name;
+  }, [navigationRef]);
+
+  const handleStateChange = useCallback(() => {
+    const previousRouteName = routeNameRef.current;
+    const currentRouteName = navigationRef.getCurrentRoute()?.name;
+
+    routeNameRef.current = currentRouteName;
+
+    // eslint-disable-next-line no-console
+    console.log({
+      origin_screen_name: previousRouteName,
+      screen_name: currentRouteName!,
+    });
+  }, [navigationRef]);
 
   return (
-    <NavigationContainer ref={navigationRef} linking={linking} theme={navigationTheme}>
+    <NavigationContainer
+      ref={navigationRef}
+      linking={linking}
+      theme={navigationTheme}
+      onReady={handleOnReady}
+      onStateChange={handleStateChange}
+    >
       {children}
     </NavigationContainer>
   );
