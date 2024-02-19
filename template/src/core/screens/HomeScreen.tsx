@@ -4,7 +4,7 @@ import { RootBottomTabScreenProps } from '../../navigation/types/RootBottomTabSc
 import { useHeader } from '../../navigation/hooks/useHeader';
 
 export const HomeScreenName = 'Home';
-export const HomeScreenPath = '/';
+export const HomeScreenPath = 'home';
 
 export type HomeScreenParams = undefined;
 export type HomeScreenProps = RootBottomTabScreenProps<typeof HomeScreenName>;
