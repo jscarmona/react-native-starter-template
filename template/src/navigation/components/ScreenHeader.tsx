@@ -1,9 +1,9 @@
-import React, { forwardRef, Ref } from 'react';
-import { View } from 'react-native';
+import React, { forwardRef, Ref, useEffect, useState } from 'react';
+import { Platform, View } from 'react-native';
 import type { ViewProps } from 'react-native';
 import { makeStyles } from '../../theme/utils/makeStyles';
 import { Text, TextProps } from '../../ui/components/Text';
-import { useScreen } from '../hooks/useScreen';
+import { useLayout } from '../../ui/hooks/useLayout';
 
 type ScreenHeaderVariant = 'primary' | 'secondary';
 
@@ -17,45 +17,43 @@ export interface ScreenHeaderProps extends ViewProps {
   rightAction?: React.ReactNode;
 }
 
-type StyleProps = Pick<ScreenHeaderProps, 'gutter'>;
-
-const useStyles = makeStyles<StyleProps>((theme, { gutter }) => ({
+const useStyles = makeStyles<{ gutter: boolean; actionWidth: number }>((theme, { gutter, actionWidth }) => ({
   root: {
     paddingHorizontal: theme.spacing(gutter ? 4 : 0),
-    paddingVertical: theme.spacing(2),
+    backgroundColor: theme.palette.background.default,
+    paddingTop: Platform.OS === 'ios' ? theme.insets.top : theme.spacing(4),
+    paddingBottom: theme.spacing(2),
   },
   navigationBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 40,
+    justifyContent: 'center',
   },
   title: {
     flexGrow: 1,
-    justifyContent: 'center',
+    flexShrink: 1,
   },
   action: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    zIndex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    minWidth: actionWidth,
   },
   leftAction: {
-    left: 0,
+    paddingRight: theme.spacing(2),
   },
   rightAction: {
-    right: 0,
+    paddingLeft: theme.spacing(2),
   },
 }));
 
 export const ScreenHeader = forwardRef(function ScreenHeader(
   {
     title,
-    gutter: gutterProp,
     leftAction,
     rightAction,
     TitleProps,
     children,
+    gutter = true,
     align = 'left',
     variant = 'primary',
     style,
@@ -63,24 +61,59 @@ export const ScreenHeader = forwardRef(function ScreenHeader(
   }: ScreenHeaderProps,
   ref: Ref<View>,
 ): JSX.Element {
-  const { gutter } = useScreen();
-  const styles = useStyles({ gutter: gutterProp ?? gutter });
+  const [{ width: leftActionWidth }, onLeftActionLayout] = useLayout();
+  const [{ width: rightActionWidth }, onRightActionLayout] = useLayout();
+  const [actionWidth, setActionWidth] = useState<number>(0);
+  const styles = useStyles({ gutter, actionWidth });
+
+  useEffect(() => {
+    if (leftAction && leftActionWidth > actionWidth) {
+      setActionWidth(leftActionWidth);
+    }
+  }, [actionWidth, leftAction, leftActionWidth]);
+
+  useEffect(() => {
+    if (rightAction && rightActionWidth > actionWidth) {
+      setActionWidth(rightActionWidth);
+    }
+  }, [actionWidth, rightAction, rightActionWidth]);
+
+  const hasActions = !!leftAction || !!rightAction;
 
   return (
-    <View ref={ref} style={[styles.root, style]} {...props}>
+    <View ref={ref} style={[styles.root, style]} testID="ScreenHeader" {...props}>
       <View style={styles.navigationBar}>
-        {align !== 'left' && leftAction && <View style={[styles.action, styles.leftAction]}>{leftAction}</View>}
+        {((hasActions && align !== 'left') || !!leftAction) && (
+          <View
+            style={[styles.action, styles.leftAction]}
+            testID="ScreenHeaderLeftActionContainer"
+            onLayout={onLeftActionLayout}
+          >
+            {leftAction}
+          </View>
+        )}
         {!!title && (
           <Text
             {...TitleProps}
             style={[styles.title, TitleProps?.style]}
             align={align}
+            numberOfLines={1}
             variant={variant === 'primary' ? 'header3' : 'header4'}
+            testID="ScreenHeaderTitle"
           >
             {title}
           </Text>
         )}
-        {rightAction && <View style={[styles.action, styles.rightAction]}>{rightAction}</View>}
+        {!title && <View style={styles.title} />}
+        {hasActions && (
+          <View
+            style={[styles.action, styles.rightAction]}
+            testID="ScreenHeaderRightActionContainer"
+            onLayout={onRightActionLayout}
+          >
+            {rightAction}
+          </View>
+        )}
       </View>
       {children}
     </View>

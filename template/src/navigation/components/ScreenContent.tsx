@@ -1,51 +1,27 @@
 import React, { forwardRef, Ref } from 'react';
-import { ScrollView, View } from 'react-native';
-import type { ViewProps as NativeViewProps, ScrollViewProps as NativeScrollViewProps } from 'react-native';
+import { View } from 'react-native';
+import type { ViewProps } from 'react-native';
 import { makeStyles } from '../../theme/utils/makeStyles';
-import { useScreen } from '../hooks/useScreen';
 
-export interface ScreenContentProps {
+export interface ScreenContentProps extends ViewProps {
   gutter?: boolean;
-  sticky?: boolean;
-  scrollable?: boolean;
-  ViewProps?: NativeViewProps;
-  ScrollViewProps?: NativeScrollViewProps;
-  children?: React.ReactNode;
 }
 
-const useStyles = makeStyles<{ gutter?: boolean; sticky?: boolean }>((theme, { gutter, sticky }) => ({
+const useStyles = makeStyles<{ gutter?: boolean }>((theme, { gutter }) => ({
   root: {
-    flexGrow: sticky ? 1 : 0,
+    flex: 1,
     paddingHorizontal: theme.spacing(gutter ? 4 : 0),
   },
 }));
 
 export const ScreenContent = forwardRef(function ScreenContent(
-  {
-    children,
-    sticky: stickyProp,
-    gutter: gutterProp,
-    scrollable: scrollableProp,
-    ScrollViewProps = {},
-    ViewProps = {},
-  }: ScreenContentProps,
-  ref: Ref<View | ScrollView>,
+  { children, gutter, style, ...props }: ScreenContentProps,
+  ref: Ref<View>,
 ): JSX.Element {
-  const { gutter, sticky, scrollable } = useScreen();
-  const styles = useStyles({ gutter: gutterProp ?? gutter, sticky: stickyProp ?? sticky });
-
-  const isScrollable = scrollableProp ?? scrollable;
-
-  if (isScrollable) {
-    return (
-      <ScrollView {...ScrollViewProps} style={[styles.root, ScrollViewProps?.style]} ref={ref as Ref<ScrollView>}>
-        {children}
-      </ScrollView>
-    );
-  }
+  const styles = useStyles({ gutter });
 
   return (
-    <View {...ViewProps} style={[styles.root, ViewProps?.style]} ref={ref as Ref<View>}>
+    <View {...props} style={[styles.root, style]} ref={ref}>
       {children}
     </View>
   );
