@@ -4,6 +4,7 @@ import { TextStyle } from 'react-native';
 export type ColorMode = 'light' | 'dark';
 
 export interface TypographyStyle {
+  fontFamily: TextStyle['fontFamily'];
   fontSize: TextStyle['fontSize'];
   fontWeight: TextStyle['fontWeight'];
   lineHeight: TextStyle['lineHeight'];
@@ -22,6 +23,14 @@ export interface Typography {
   secondaryBold: TypographyStyle;
   tertiaryRegular: TypographyStyle;
   tertiaryBold: TypographyStyle;
+  fontFamilyLight: TextStyle['fontFamily'];
+  fontFamilyRegular: TextStyle['fontFamily'];
+  fontFamilyMedium: TextStyle['fontFamily'];
+  fontFamilyBold: TextStyle['fontFamily'];
+  fontWeightLight: TextStyle['fontWeight'];
+  fontWeightRegular: TextStyle['fontWeight'];
+  fontWeightMedium: TextStyle['fontWeight'];
+  fontWeightBold: TextStyle['fontWeight'];
   toFontWeight: (weight: TextStyle['fontWeight']) => TextStyle['fontWeight'];
 }
 
@@ -36,6 +45,13 @@ export interface PaletteScale {
   200: string;
   100: string;
   50: string;
+}
+
+export interface PaletteColorOptions {
+  light?: string;
+  main: string;
+  dark?: string;
+  contrastText?: string;
 }
 
 export interface BackgroundPalette {
@@ -56,13 +72,27 @@ export interface TextPalette {
   disabled: string;
 }
 
-export interface Palette {
-  primary: PaletteScale;
-  secondary: PaletteScale;
+export interface CommonColors {
+  white: string;
+  black: string;
+  green: PaletteScale;
+  red: PaletteScale;
   gray: PaletteScale;
-  info: PaletteScale;
-  warning: PaletteScale;
-  error: PaletteScale;
+  blue: PaletteScale;
+  yellow: PaletteScale;
+  purple: PaletteScale;
+}
+
+export interface Palette {
+  common: CommonColors;
+  primary: PaletteColorOptions;
+  secondary: PaletteColorOptions;
+  tertiary: PaletteColorOptions;
+  premium: PaletteColorOptions;
+  success: PaletteColorOptions;
+  info: PaletteColorOptions;
+  warning: PaletteColorOptions;
+  error: PaletteColorOptions;
   background: BackgroundPalette;
   text: TextPalette;
   border: BorderPalette;

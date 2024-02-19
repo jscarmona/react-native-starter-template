@@ -30,7 +30,7 @@ const TextInput = styled.TextInput(({ theme, multiline, numberOfLines }) => ({
   height: multiline ? (numberOfLines || 1) * 24 : 40,
   minHeight: 40,
   textAlignVertical: 'center',
-  color: theme.palette.text.primary,
+  color: theme.palette.text.secondary,
 }));
 
 export function Input({ TextInputProps, ...props }: InputProps) {
