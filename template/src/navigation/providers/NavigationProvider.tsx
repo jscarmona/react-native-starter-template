@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useCallback, useMemo, useRef } from 'react';
-import { NavigationContainer, Theme, useNavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer, Theme, useNavigationContainerRef, DefaultTheme } from '@react-navigation/native';
 import { useTheme } from '@emotion/react';
 import { RootStackParamList } from '../types/RootStackParamList';
 import { linking } from '../utils/linking';
@@ -9,8 +9,10 @@ const useNavigationTheme = (): Theme => {
 
   return useMemo(
     () => ({
+      ...DefaultTheme,
       dark: theme.mode === 'dark',
       colors: {
+        ...DefaultTheme.colors,
         primary: theme.palette.primary.main,
         background: theme.palette.background.default,
         card: theme.palette.background.default,
